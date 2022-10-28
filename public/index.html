@@ -8,8 +8,11 @@
 </head>
 <body>
 
-  <button onclick="jsErrorTrigger()">js异常</button>
-  <button onclick="promiseErrorTrigger()">promise异常</button>
+  <div id="list">
+    <button class="js-error-btn" onclick="jsErrorTrigger()">js异常</button>
+    <button onclick="promiseErrorTrigger()">promise异常</button>
+  </div>
+  
   <script>
     function jsErrorTrigger() {
       window.jsError.name = 'jsError'
