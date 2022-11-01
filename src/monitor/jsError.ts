@@ -1,26 +1,30 @@
-import type { ILog } from './interface'
 import getEvent from '@/utils/getEvent'
 import getSelector from '@/utils/getSelector'
 import tracker from '@/utils/Tracker'
+import { CommonLog, JsErrorLog, ResorceErrorLog  } from './Log'
 
-const jsErrorCatch = () => {
-  window.addEventListener('error', (event) => {
+const jsError = () => {
+  window.addEventListener('error', (event: any) => {
+    let log: CommonLog
 
-    const lastEvent = getEvent()
+    let target: any = event.target || event.srcElement;
+    let isElementTarget = target instanceof HTMLScriptElement || target instanceof HTMLLinkElement || target instanceof HTMLImageElement;
+    if (isElementTarget) {
+      // 资源加载错误
+      log = new ResorceErrorLog(target.src || target.href, getSelector(event.path), target.tagName)
+    } else {
+      const lastEvent = getEvent()
 
-    const log: ILog = {
-      kind: 'stability',
-      type: 'error',
-      errorType: 'jsError',
-      message: event.message,
-      filename: event.filename,
-      position: `line: ${event.lineno}, column: ${event.colno}`,
-      stack: event.error.stack,
-      selector: lastEvent ? getSelector((lastEvent as any).path) : '',
+      const position = `line: ${event.lineno}, column: ${event.colno}`
+      const selector = lastEvent ? getSelector((lastEvent as any).path) : ''
+
+      log = new JsErrorLog(event.message, event.filename, position, event.error.stack, selector)
     }
 
+    
+
     tracker.send(log)
-  })
+  }, true)
 }
 
-export default jsErrorCatch
+export default jsError

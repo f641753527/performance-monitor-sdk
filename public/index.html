@@ -18,10 +18,12 @@
       window.jsError.name = 'jsError'
     }
     function promiseErrorTrigger() {
-      new new Promise((reslove, reject) => {
-        reject()
+      new Promise((reslove, reject) => {
+        // window.promiseError.name = 'promiseError'
+        return reject({ name: 123 })
       })
     }
   </script>
+
 </body>
 </html>

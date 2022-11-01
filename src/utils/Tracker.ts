@@ -1,4 +1,3 @@
-import { ILog } from '../monitor/interface'
 import getUserConfig from './getUserConfig'
 
 const PUBLIC_HOST = 'cn-guangzhou.log.aliyuncs.com'
@@ -15,7 +14,7 @@ class SendTracker {
     this.xhr = new XMLHttpRequest()
   }
 
-  public send(data: ILog) {
+  public send<T>(data: T) {
 
     this.xhr.open('POST', url, true)
 
