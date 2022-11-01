@@ -1,6 +1,7 @@
 import type { ILog } from './interface'
 import getEvent from '@/utils/getEvent'
 import getSelector from '@/utils/getSelector'
+import tracker from '@/utils/Tracker'
 
 const jsErrorCatch = () => {
   window.addEventListener('error', (event) => {
@@ -18,7 +19,7 @@ const jsErrorCatch = () => {
       selector: lastEvent ? getSelector((lastEvent as any).path) : '',
     }
 
-    console.log(log)
+    tracker.send(log)
   })
 }
 
