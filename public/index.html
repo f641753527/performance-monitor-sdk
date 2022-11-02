@@ -5,18 +5,25 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>前端性能监控sdk</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+  </style>
 </head>
 <body>
 
   <div id="app">
-    <div id="js-error-container">
-      <button class="js-error-btn" onclick="jsErrorTrigger()">js异常</button>
-      <button class="promise-error-btn" onclick="promiseErrorTrigger()">promise异常</button>
-    </div>
-
-    <div class="xhr-error-container">
-      <button class="xhr-success-btn" onclick="xhrSuccessTrigger()">http success</button>
-      <button class="xhr-error-btn" onclick="xhrErrorTrigger()">http error</button>
+    <div class="container">
+      <!-- <div id="js-error-container">
+        <button class="js-error-btn" onclick="jsErrorTrigger()">js异常</button>
+        <button class="promise-error-btn" onclick="promiseErrorTrigger()">promise异常</button>
+      </div>
+      <div class="xhr-error-container">
+        <button class="xhr-success-btn" onclick="xhrSuccessTrigger()">http success</button>
+        <button class="xhr-error-btn" onclick="xhrErrorTrigger()">http error</button>
+      </div> -->
     </div>
   </div>
   
@@ -47,6 +54,27 @@
       xhr.open('get', '/error', true)
       xhr.send()
     }
+  </script>
+
+  <script>
+    console.log(document.readyState)
+
+    const script = document.createElement('script')
+    script.src = 'http://cdn.com.cn/js/404.js'
+    document.body.append(script)
+
+  </script>
+  
+  <script>
+    /** 动态注入html */
+      
+    const container = document.querySelector('.container')
+    for (let i = 0; i < 10; i++) {
+      const oDiv = document.createElement('div')
+      oDiv.innerHTML = '@'.repeat(100)
+      container.appendChild(oDiv)
+    }
+    
   </script>
 
 </body>
