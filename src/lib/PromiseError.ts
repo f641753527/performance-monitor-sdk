@@ -1,7 +1,7 @@
 import getEvent from '@/utils/getEvent'
 import getSelector from '@/utils/getSelector'
 import tracker from '@/utils/Tracker'
-import CommonLog, { ERROY_TYPE } from '@/utils/CommonLog'
+import CommonLog, { MAIN_TYPE, ERROY_TYPE } from '@/utils/CommonLog'
 
 const promiseError = () => {
   window.addEventListener('unhandledrejection', (event) => {
@@ -11,7 +11,7 @@ const promiseError = () => {
     const lastEvent = getEvent()
     const selector = lastEvent ? getSelector((lastEvent as any).path) : ''
 
-    const log = new CommonLog(ERROY_TYPE.PROMISE)
+    const log = new CommonLog(MAIN_TYPE.ERROR, ERROY_TYPE.PROMISE)
     log.selector = selector
 
     if (typeof reason === 'object' && reason.stack && reason.message) {

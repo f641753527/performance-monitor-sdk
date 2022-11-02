@@ -8,12 +8,21 @@
 </head>
 <body>
 
-  <div id="list">
-    <button class="js-error-btn" onclick="jsErrorTrigger()">js异常</button>
-    <button onclick="promiseErrorTrigger()">promise异常</button>
+  <div id="app">
+    <div id="js-error-container">
+      <button class="js-error-btn" onclick="jsErrorTrigger()">js异常</button>
+      <button class="promise-error-btn" onclick="promiseErrorTrigger()">promise异常</button>
+    </div>
+
+    <div class="xhr-error-container">
+      <button class="xhr-success-btn" onclick="xhrSuccessTrigger()">http success</button>
+      <button class="xhr-error-btn" onclick="xhrErrorTrigger()">http error</button>
+    </div>
   </div>
   
+  
   <script>
+    /** js错误捕获 */
     function jsErrorTrigger() {
       window.jsError.name = 'jsError'
     }
@@ -22,6 +31,21 @@
         // window.promiseError.name = 'promiseError'
         return reject({ name: 123 })
       })
+    }
+  </script>
+
+  <script>
+    /** xhr 请求补货 */
+    function xhrSuccessTrigger() {
+      const xhr = new XMLHttpRequest()
+      xhr.open('post', '/success', true)
+      xhr.send('{ name: "Phoenix" }')
+    }
+
+    function xhrErrorTrigger() {
+      const xhr = new XMLHttpRequest()
+      xhr.open('get', '/error', true)
+      xhr.send()
     }
   </script>
 

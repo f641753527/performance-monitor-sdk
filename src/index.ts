@@ -1,8 +1,9 @@
-import { jsError, PromiseError } from './lib'
+import { jsError, promiseError, xhrError } from './lib'
 
 export const init = (config?: any) => {
   jsError()
-  PromiseError()
+  promiseError()
+  xhrError()
 }
 
 init()

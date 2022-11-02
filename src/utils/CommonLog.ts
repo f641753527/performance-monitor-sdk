@@ -1,14 +1,21 @@
+export enum MAIN_TYPE {
+  ERROR = 'error',
+  XHR = 'XHR'
+}
+
 export enum ERROY_TYPE {
   JS = 'jsError',
   RESOURCE = 'resourceError',
   PROMISE = 'promiseError',
+  XHR_SUCCESS = 'xhrSuccess',
+  XHR_ERROR = 'xhrERROR',
 }
 
 export default class CommonLog {
   /** 大类 */
   private _kind: string = 'stability'
   /** 小类型 */
-  private _type: string = 'error'
+  private _type: MAIN_TYPE
   /** 错误类型 */
   private _errorType?: ERROY_TYPE
   /** 错误信息 */
@@ -25,9 +32,16 @@ export default class CommonLog {
   private _selector?: string
   /** 标签 */
   private _tagName?: string
+  /** 请求状态 */
+  private _params?: string
+  /** 接口状态 */
+  private _status?: string
+  /** 接口响应 */
+  private _respopnse?: string
 
-  constructor (errorType: ERROY_TYPE) {
-    this.errorType = errorType
+  constructor (type: MAIN_TYPE, errorType?: ERROY_TYPE) {
+    this._type = type
+    errorType && (this.errorType = errorType)
   }
 
   set errorType(errorType: ERROY_TYPE) {
@@ -60,5 +74,17 @@ export default class CommonLog {
 
   set tagName (tagName: string) {
     this._tagName = tagName
+  }
+
+  set params (params: string) {
+    this._params = params
+  }
+
+  set status (status: string) {
+    this._status = status
+  }
+
+  set respopnse (res: string) {
+    this._respopnse = res
   }
 }

@@ -17,5 +17,17 @@ module.exports = merge(config, {
     },
     port: 3000,
     open: true,
+    onBeforeSetupMiddleware: function(devServer){
+      if (!devServer) {
+        throw new Error('webpack-dev-server is not defined');
+      }
+      const { app } = devServer
+      app.post('/success', function(req, res) {
+        res.json({ custom: 'response' });
+      });
+      app.get('/error', function(req, res) {
+        res.sendStatus(500)
+      });
+    }
   },
 })
