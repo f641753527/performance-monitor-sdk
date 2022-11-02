@@ -1,7 +1,8 @@
 export default function() {
   return {
-    title: document.title,
-    timestamp: `${Date.now()}`,
-    userAgent: navigator.userAgent
+    _title: document.title,
+    _timestamp: `${Date.now()}`,
+    _userAgent: navigator.userAgent,
+    _url: location.href
   }
 }

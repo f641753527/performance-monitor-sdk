@@ -1,7 +1,7 @@
 import getEvent from '@/utils/getEvent'
 import getSelector from '@/utils/getSelector'
 import tracker from '@/utils/Tracker'
-import { CommonLog, JsErrorLog, ResorceErrorLog  } from './Log'
+import CommonLog, { ERROY_TYPE } from '@/utils/CommonLog'
 
 const jsError = () => {
   window.addEventListener('error', (event: any) => {
@@ -11,14 +11,22 @@ const jsError = () => {
     let isElementTarget = target instanceof HTMLScriptElement || target instanceof HTMLLinkElement || target instanceof HTMLImageElement;
     if (isElementTarget) {
       // 资源加载错误
-      log = new ResorceErrorLog(target.src || target.href, getSelector(event.path), target.tagName)
+      log = new CommonLog(ERROY_TYPE.RESOURCE)
+      log.filename = target.src || target.href
+      log.selector = getSelector(event.path)
+      log.tagName = target.tagName
     } else {
       const lastEvent = getEvent()
 
       const position = `line: ${event.lineno}, column: ${event.colno}`
       const selector = lastEvent ? getSelector((lastEvent as any).path) : ''
 
-      log = new JsErrorLog(event.message, event.filename, position, event.error.stack, selector)
+      log = new CommonLog(ERROY_TYPE.JS)
+      log.message = event.message
+      log.filename  = event.filename
+      log.position = position
+      log.stack = event.error.stack
+      log.selector = selector
     }
 
     

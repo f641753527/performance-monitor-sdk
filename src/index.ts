@@ -1,4 +1,4 @@
-import { jsError, PromiseError } from './monitor'
+import { jsError, PromiseError } from './lib'
 
 export const init = (config?: any) => {
   jsError()
