@@ -7,4 +7,4 @@ export const init = (config?: any) => {
   blankScreen()
 }
 
-init()
+// init()
