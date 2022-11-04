@@ -57,11 +57,10 @@
   </script>
 
   <script>
-    console.log(document.readyState)
 
     const script = document.createElement('script')
     script.src = 'http://cdn.com.cn/js/404.js'
-    document.body.append(script)
+    // document.body.append(script)
 
   </script>
   
@@ -71,7 +70,7 @@
     const container = document.querySelector('.container')
     for (let i = 0; i < 10; i++) {
       const oDiv = document.createElement('div')
-      oDiv.innerHTML = '@'.repeat(100)
+      oDiv.innerHTML = '@'.repeat(1000)
       container.appendChild(oDiv)
     }
     

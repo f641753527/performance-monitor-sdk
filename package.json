@@ -1,14 +1,14 @@
 {
   "name": "performance-monitor-sdk",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "前端性能监控sdk 错误监控 日志采集",
-  "main": "lib/main.js",
+  "main": "dist/main.js",
   "scripts": {
     "start": "webpack-dev-server --config=build/webpack.dev.config.js",
     "build": "webpack --config=build/webpack.prod.config.js"
   },
   "files": [
-    "lib/*"
+    "dist/*"
   ],
   "keywords": [],
   "author": "",
