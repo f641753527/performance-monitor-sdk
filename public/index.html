@@ -16,14 +16,14 @@
 
   <div id="app">
     <div class="container">
-      <!-- <div id="js-error-container">
+      <div id="js-error-container">
         <button class="js-error-btn" onclick="jsErrorTrigger()">js异常</button>
         <button class="promise-error-btn" onclick="promiseErrorTrigger()">promise异常</button>
       </div>
       <div class="xhr-error-container">
         <button class="xhr-success-btn" onclick="xhrSuccessTrigger()">http success</button>
         <button class="xhr-error-btn" onclick="xhrErrorTrigger()">http error</button>
-      </div> -->
+      </div>
     </div>
   </div>
   
@@ -66,13 +66,15 @@
   
   <script>
     /** 动态注入html */
-      
-    const container = document.querySelector('.container')
-    for (let i = 0; i < 10; i++) {
-      const oDiv = document.createElement('div')
-      oDiv.innerHTML = '@'.repeat(1000)
-      container.appendChild(oDiv)
-    }
+    // setTimeout(() => {
+      const container = document.querySelector('.container')
+      for (let i = 0; i < 10; i++) {
+        const oDiv = document.createElement('div')
+        oDiv.innerHTML = '@'.repeat(1000)
+        container.appendChild(oDiv)
+      }
+    // }, 1500)
+    
     
   </script>
 

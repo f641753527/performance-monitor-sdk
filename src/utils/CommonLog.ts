@@ -1,7 +1,7 @@
 export enum MAIN_TYPE {
   ERROR = 'error',
   XHR = 'XHR',
-  SCREEN = 'SCREEN'
+  SCREEN = 'SCREEN',
 }
 
 export enum ERROY_TYPE {
@@ -10,7 +10,8 @@ export enum ERROY_TYPE {
   PROMISE = 'promiseError',
   XHR_SUCCESS = 'xhrSuccess',
   XHR_ERROR = 'xhrERROR',
-  BLANK_SCREEN = 'BLANK_SCREEN'
+  BLANK_SCREEN = 'BLANK_SCREEN',
+  PERFORMANCE = 'PERFORMANCE'
 }
 
 export default class CommonLog {
